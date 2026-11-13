@@ -13,7 +13,8 @@ export default defineConfig({
   base: "./",
   plugins: [react()],
   build: {
-    outDir: resolve(import.meta.dirname, "dist"),
+    // Committed, ready-to-load folder (see README). Stable names keep git diffs small.
+    outDir: resolve(import.meta.dirname, "extension"),
     emptyOutDir: true,
     target: "chrome114",
     sourcemap: false,
@@ -24,7 +25,9 @@ export default defineConfig({
       },
       output: {
         entryFileNames: (chunk) =>
-          chunk.name === "service-worker" ? "service-worker.js" : "assets/[name]-[hash].js",
+          chunk.name === "service-worker" ? "service-worker.js" : "assets/[name].js",
+        chunkFileNames: "assets/[name].js",
+        assetFileNames: "assets/[name][extname]",
       },
     },
   },

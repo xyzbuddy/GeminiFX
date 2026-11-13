@@ -43,9 +43,9 @@ All three are concatenated into the single `<style id="geminifx-style">`. `tests
 
 ## Build
 
-- `vite.config.ts`: popup + service worker → `dist/`.
-- `vite.content.config.ts`: content script as a single IIFE → `dist/content.js` (MV3 content scripts can't be ES modules). CSS is inlined via `?inline` so it can be removed on disable.
-- `scripts/verify-build.mjs` fails the build if the manifest isn't MV3, references a missing file, or requests extra permissions.
+- `vite.config.ts`: popup + service worker → `extension/` (stable file names, no hashes).
+- `vite.content.config.ts`: content script as a single IIFE → `extension/content.js` (MV3 content scripts can't be ES modules). CSS is inlined via `?inline` so it can be removed on disable.
+- `scripts/verify-build.mjs` fails the build if the manifest isn't MV3, references a missing file, requests extra permissions, or has a version different from package.json.
 
 ## Deviations from the proposed structure
 

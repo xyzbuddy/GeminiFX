@@ -1,0 +1,7 @@
+# Store and check out text files with LF everywhere (stops CRLF warnings on Windows).
+* text=auto eol=lf
+*.png binary
+*.zip binary
+
+# extension/ is build output (committed so anyone can "Load unpacked" it directly).
+extension/** linguist-generated=true

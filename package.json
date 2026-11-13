@@ -1,6 +1,6 @@
 {
   "name": "geminifx",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Unofficial, open-source visual layer for Google Gemini. Change the UI, not the AI.",
   "license": "MIT",

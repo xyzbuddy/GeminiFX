@@ -1,0 +1,17 @@
+GeminiFX - how to install
+=========================
+
+This folder IS the extension (it contains manifest.json).
+
+1. Open chrome://extensions in Chrome (or Edge, Brave: edge://extensions, brave://extensions).
+2. Turn on "Developer mode" (top right).
+3. Click "Load unpacked" and select THIS folder (the one that contains manifest.json).
+4. Open or refresh https://gemini.google.com
+
+Keep this folder where it is: Chrome loads the extension from it.
+
+Update: download the latest GeminiFX-extension.zip from
+https://github.com/xyzbuddy/GeminiFX/releases/latest
+replace this folder's contents, then click the reload button on the GeminiFX card.
+
+Unofficial project. Not affiliated with Google or OpenAI.

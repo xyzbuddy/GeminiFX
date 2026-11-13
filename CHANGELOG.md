@@ -1,8 +1,24 @@
 # Changelog
 
+## [0.1.1] - 2026-11-13
+
+### Fixed
+- Installing from a download failed with "Manifest file is missing or unreadable" for anyone who downloaded **Source code (zip)**, because v0.1.0 was published without the extension zip attached.
+
+### Added
+- `extension/`: the ready-to-load extension is now committed, so a clone or "Code → Download ZIP" can be loaded directly.
+- Automatic releases: pushing a `v*` tag builds, tests and publishes `GeminiFX-extension.zip` (GitHub Actions). The stable name gives a permanent "latest" download link.
+- CI on every push (tests and build).
+- `HOW_TO_INSTALL.txt` inside the extension folder.
+- README: a 4-step Quick install guide at the top, with a warning about "Source code (zip)" and the fix for the manifest error.
+
+### Changed
+- Build output moved from `dist/` to `extension/`, with stable file names (no hashes).
+- The build now also checks that the manifest version matches package.json.
+
 ## [0.1.0] - 2026-11-13
 
-First public release. Download `GeminiFX-v0.1.0.zip` from the GitHub release, extract it, and load the folder with **Load unpacked**.
+First public release (published without the extension zip; use 0.1.1 or later).
 
 ### Added
 - **ChatGPT-style theme (approved proposal P1):** black shell with the blue glow removed, black sidebar with a faint divider, 36 px nav items with `#1a1a1a` hover/current state, 768 × 52 px pill composer, white Send button, 28 px system-font heading, and the system font stack throughout (icons and code excluded).

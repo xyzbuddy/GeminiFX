@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "GeminiFX",
   "short_name": "GeminiFX",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Unofficial, open-source visual layer for Google Gemini. Change the UI, not the AI. Not affiliated with Google or OpenAI.",
   "minimum_chrome_version": "114",
   "permissions": ["storage"],

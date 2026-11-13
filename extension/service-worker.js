@@ -1,0 +1,1 @@
+import{t as e}from"./assets/storage.js";chrome.runtime.onInstalled.addListener(()=>{e()});

@@ -22,4 +22,4 @@ Include the date, signed-in or signed-out state, page (zero-state or conversatio
 npm run typecheck && npm test && npm run build
 ```
 
-Then load `dist/` in Chrome and run the manual checklist in `docs/DEVELOPMENT.md`.
+Commit the rebuilt `extension/` folder together with your source changes. Then load `extension/` in Chrome and run the manual checklist in `docs/DEVELOPMENT.md`.

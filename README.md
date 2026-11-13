@@ -6,6 +6,22 @@ GeminiFX is a free, open-source Chrome extension that gives [Google Gemini](http
 
 > **Unofficial project.** GeminiFX is independent and is not affiliated with, endorsed by, or sponsored by Google or OpenAI. "Gemini" and "ChatGPT" are trademarks of their respective owners.
 
+## ⚡ Quick install (2 minutes, no coding)
+
+| Step | What to do |
+|---|---|
+| 1. Download | **[⬇ GeminiFX-extension.zip](https://github.com/xyzbuddy/GeminiFX/releases/latest/download/GeminiFX-extension.zip)** (always the latest version) |
+| 2. Extract | Right-click the zip → **Extract All**. You get a folder with `manifest.json` inside. Keep this folder. |
+| 3. Load | Open `chrome://extensions` → turn on **Developer mode** (top right) → **Load unpacked** → select **that folder** |
+| 4. Use | Open or refresh [gemini.google.com](https://gemini.google.com) |
+
+> ⚠️ **Don't download "Source code (zip)"** from the release page. That is the developer source, and Chrome will show *"Manifest file is missing"*.
+> Already downloaded the whole repo (Code → Download ZIP)? That works too: select the **`extension`** folder inside it.
+
+**Update:** download the zip again, replace the old folder's files, then click ⟳ on the GeminiFX card in `chrome://extensions`.
+
+**"Manifest file is missing or unreadable"?** You selected the wrong folder. Select the folder that has `manifest.json` *directly* inside it.
+
 ---
 
 ## Why GeminiFX?
@@ -39,34 +55,14 @@ Now that offer has ended. Gemini offers a similar student plan, so switching mak
 
 ---
 
-## Install
+## Install details
 
-GeminiFX isn't on the Chrome Web Store yet. There are two ways to install it.
+GeminiFX isn't on the Chrome Web Store yet. Use the **Quick install** above, or one of these:
 
-### Option 1: download a release (no coding needed)
+- **With git (easy updates):** `git clone https://github.com/xyzbuddy/GeminiFX.git`, then **Load unpacked** the `GeminiFX/extension` folder. To update: `git pull`, then click ⟳ on the GeminiFX card.
+- **Build from source (developers):** `npm install` then `npm run build`, which rebuilds the `extension/` folder.
 
-1. Go to [**Releases**](https://github.com/xyzbuddy/GeminiFX/releases/latest) and download `GeminiFX-v0.1.0.zip`.
-2. Extract the zip to a folder you'll keep (Chrome loads the extension from it).
-3. Open `chrome://extensions` and turn on **Developer mode** (top right).
-4. Click **Load unpacked** and choose the extracted folder (the one containing `manifest.json`).
-5. Open or refresh [gemini.google.com](https://gemini.google.com).
-
-To update: download the new zip, replace the folder's contents, then click ⟳ on the GeminiFX card.
-
-### Option 2: build from source
-
-```bash
-git clone https://github.com/xyzbuddy/GeminiFX.git
-cd GeminiFX
-npm install
-npm run build
-```
-
-Then load the **`dist`** folder with **Load unpacked** (same steps as above).
-
-To update later: `git pull`, `npm run build`, then click ⟳ on the GeminiFX card and refresh Gemini.
-
-Requires Node 20.11+ and Chrome 114+ (or another Chromium browser).
+Works in Chrome 114+ and other Chromium browsers (Edge, Brave). A school or work-managed Chrome may block Developer mode; that's a browser policy, not a GeminiFX error.
 
 ---
 
@@ -78,7 +74,7 @@ Requires Node 20.11+ and Chrome 114+ (or another Chromium browser).
 
 ---
 
-## Project status: v0.1.0, first release
+## Project status: v0.1.1
 
 | Part | State |
 |---|---|
@@ -102,6 +98,7 @@ All Gemini-specific selectors live in one file ([`src/content/dom-adapter.ts`](s
 
 | Folder | What's inside |
 |---|---|
+| `extension/` | **Ready-to-load extension** (build output, committed) |
 | `src/content/` | Content script, DOM adapter, observers |
 | `src/themes/` | Design tokens, the ChatGPT-style theme, the Gemini bridge stylesheet |
 | `src/popup/` | React popup |
@@ -111,7 +108,7 @@ All Gemini-specific selectors live in one file ([`src/content/dom-adapter.ts`](s
 
 ```bash
 npm test          # unit tests
-npm run build     # type-check + build + verify the manifest → dist/
+npm run build     # type-check + build + verify the manifest → extension/
 ```
 
 ---

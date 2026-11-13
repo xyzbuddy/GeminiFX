@@ -1,0 +1,50 @@
+# Pushing a tag like v0.1.1 builds the extension and publishes a GitHub release
+# with GeminiFX-extension.zip attached, so nobody has to upload files by hand.
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+
+      - name: Tag must match package.json version
+        run: |
+          expected="v$(node -p "require('./package.json').version")"
+          if [ "$expected" != "$GITHUB_REF_NAME" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match package.json version ($expected)"
+            exit 1
+          fi
+
+      - name: Warn if the committed extension/ folder is out of date
+        run: |
+          git diff --quiet -- extension || echo "::warning::Committed extension/ differs from a fresh build. Run 'npm run build' and commit."
+
+      - name: Package (flat zip, manifest.json at the root)
+        run: cd extension && zip -r -X ../GeminiFX-extension.zip . -x '.*'
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" GeminiFX-extension.zip \
+            --title "GeminiFX $GITHUB_REF_NAME" \
+            --notes-file .github/release-notes.md \
+            --generate-notes \
+            --latest

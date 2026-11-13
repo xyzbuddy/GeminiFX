@@ -24,10 +24,10 @@ GeminiFX is an MV3 Chrome extension that restyles gemini.google.com with a ChatG
 npm install
 npm run typecheck
 npm test
-npm run build      # typecheck + vite builds + scripts/verify-build.mjs → dist/
+npm run build      # typecheck + vite builds + scripts/verify-build.mjs → extension/
 ```
 
-Load `dist/` via chrome://extensions → Developer mode → Load unpacked.
+Load `extension/` via chrome://extensions → Developer mode → Load unpacked. `extension/` is committed build output: rebuild and commit it with every source change. Releases: bump `version` in package.json and public/manifest.json, commit, push a tag `vX.Y.Z`; `.github/workflows/release.yml` publishes `GeminiFX-extension.zip`.
 
 ## After work
 

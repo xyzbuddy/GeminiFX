@@ -6,14 +6,14 @@ Requirements: Node 20.11+ (tested with Node 24, npm 11) and Chrome 114+.
 npm install
 npm run typecheck   # browser code + Vite configs
 npm test            # Vitest + jsdom
-npm run build       # typecheck → vite build → content build → verify-build → dist/
+npm run build       # typecheck → vite build → content build → verify-build → extension/
 npm run icons       # regenerate provisional icons in public/icons/
 ```
 
 ## Load in Chrome
 
 1. `npm run build`
-2. Open `chrome://extensions`, enable **Developer mode**, click **Load unpacked**, and select the **`dist/`** folder.
+2. Open `chrome://extensions`, enable **Developer mode**, click **Load unpacked**, and select the **`extension/`** folder.
 3. Open or refresh `https://gemini.google.com/`. Tabs opened before install need a refresh.
 4. After rebuilding, click the reload icon on the GeminiFX card and refresh the Gemini tab.
 
