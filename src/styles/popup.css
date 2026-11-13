@@ -1,0 +1,70 @@
+/*
+ * PROVISIONAL popup styling: neutral and functional only.
+ * Final popup design is PENDING owner approval (docs/DESIGN_DECISIONS.md).
+ */
+
+:root {
+  color-scheme: light dark;
+  --p-bg: #ffffff;
+  --p-fg: #1f1f1f;
+  --p-muted: #6b6b6b;
+  --p-border: #e3e3e3;
+  --p-on: #1a7f4b;
+  --p-warn: #a15c00;
+  --p-off: #8a8a8a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --p-bg: #1f1f1f;
+    --p-fg: #ececec;
+    --p-muted: #a1a1a1;
+    --p-border: #3a3a3a;
+    --p-on: #4cc38a;
+    --p-warn: #e0a24a;
+    --p-off: #8a8a8a;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  width: 320px;
+  background: var(--p-bg);
+  color: var(--p-fg);
+  font: 13px/1.45 ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif;
+}
+
+.gfx-popup { display: flex; flex-direction: column; gap: 12px; padding: 14px; }
+
+.gfx-header { display: flex; align-items: center; gap: 8px; }
+.gfx-header h1 { margin: 0; font-size: 15px; font-weight: 600; }
+.gfx-version { margin-left: auto; color: var(--p-muted); font-size: 12px; }
+
+.gfx-status { display: flex; gap: 8px; align-items: flex-start; padding: 10px; border: 1px solid var(--p-border); border-radius: 8px; }
+.gfx-status p { margin: 0; }
+.gfx-status-dot { flex: none; width: 8px; height: 8px; margin-top: 5px; border-radius: 50%; background: var(--p-off); }
+.gfx-status--on .gfx-status-dot { background: var(--p-on); }
+.gfx-status--warn .gfx-status-dot { background: var(--p-warn); }
+.gfx-status-detail { color: var(--p-muted); font-size: 12px; }
+
+.gfx-panel { display: flex; flex-direction: column; gap: 10px; }
+.gfx-toggle { display: flex; justify-content: space-between; align-items: center; }
+.gfx-toggle input { width: 18px; height: 18px; margin: 0; }
+
+.gfx-button {
+  align-self: flex-start;
+  padding: 6px 10px;
+  border: 1px solid var(--p-border);
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.gfx-button:hover { background: color-mix(in srgb, var(--p-fg) 6%, transparent); }
+
+:focus-visible { outline: 2px solid var(--p-on); outline-offset: 2px; }
+
+.gfx-footer { color: var(--p-muted); font-size: 11px; }

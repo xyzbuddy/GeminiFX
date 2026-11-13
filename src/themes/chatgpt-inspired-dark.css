@@ -1,0 +1,45 @@
+/*
+ * Theme "chatgpt-inspired-dark": color tokens only, no element selectors.
+ * Values are APPROVED proposal P1 (docs/DESIGN_DECISIONS.md), sampled from
+ * owner references R1–R4. Dark is the default; light (P1-F) applies when
+ * Gemini itself is in light mode (data-geminifx-scheme="light").
+ */
+
+/* Dark: P1-A..E (R1, R2, R4) */
+html[data-geminifx="on"][data-geminifx-theme="chatgpt-inspired-dark"] {
+  --geminifx-bg: #000000;
+  --geminifx-sidebar-bg: #000000;
+  --geminifx-divider: #0d0d0d;
+  --geminifx-surface-hover: #1a1a1a;
+  --geminifx-surface-active: #1a1a1a;
+  --geminifx-text: #ededed;
+  --geminifx-text-muted: #afafaf;
+  --geminifx-composer-bg: #1b1b1b;
+  --geminifx-composer-border: #262626;
+  --geminifx-composer-shadow: none;
+  --geminifx-send-bg: #ffffff;
+  --geminifx-send-fg: #000000;
+  --geminifx-inline-code-bg: #1b1b1b;
+  --geminifx-user-bubble-bg: #2c6732;
+  --geminifx-user-bubble-fg: #effaf3;
+}
+
+/* Light: P1-F (R3) */
+html[data-geminifx="on"][data-geminifx-theme="chatgpt-inspired-dark"][data-geminifx-scheme="light"] {
+  --geminifx-bg: #fcfcfc;
+  --geminifx-sidebar-bg: #fcfcfc;
+  --geminifx-divider: #efefef;
+  --geminifx-surface-hover: #efefef;
+  --geminifx-surface-active: #efefef;
+  --geminifx-text: #0d0d0d;
+  --geminifx-text-muted: #8f8f8f;
+  --geminifx-composer-bg: #ffffff;
+  --geminifx-composer-border: #ececec;
+  --geminifx-composer-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  /* White-on-white would be invisible; inverse of the approved white circle, as in R3's style. */
+  --geminifx-send-bg: #0d0d0d;
+  --geminifx-send-fg: #ffffff;
+  --geminifx-inline-code-bg: #ececec;
+  --geminifx-user-bubble-bg: #2c6732;
+  --geminifx-user-bubble-fg: #effaf3;
+}

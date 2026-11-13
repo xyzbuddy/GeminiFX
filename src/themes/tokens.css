@@ -1,0 +1,42 @@
+/*
+ * GeminiFX layout and typography tokens. Only active while GeminiFX is enabled.
+ * Colors live in the theme file (chatgpt-inspired-dark.css), which defines
+ * dark and light values. Settings-driven tokens (--geminifx-accent,
+ * --geminifx-sidebar-width, --geminifx-content-width, --geminifx-font-size)
+ * are overridden inline on <html> by core/theme-engine.ts; the values here are fallbacks.
+ */
+
+html[data-geminifx="on"] {
+  --geminifx-accent: #10a37f;
+
+  --geminifx-sidebar-width: 260px;
+  --geminifx-content-width: 768px;
+
+  --geminifx-radius-sm: 8px;
+  --geminifx-radius-md: 12px;
+  --geminifx-radius-lg: 20px;
+  --geminifx-radius-full: 9999px;
+  --geminifx-radius-bubble: 20px; /* R4 user bubble */
+  --geminifx-bubble-pad-block: 12px; /* R4: 2 lines × 24px in a ≈71px bubble */
+  --geminifx-bubble-pad-inline: 16px;
+
+  --geminifx-nav-item-height: 36px;
+  --geminifx-composer-pad-block: 6px; /* 6 + 40 + 6 = 52px single-line composer */
+
+  /* P2 (R5 vs R6): ChatGPT body 16px / 26px, sidebar 14px. --geminifx-font-size follows settings. */
+  --geminifx-font-size: 16px;
+  --geminifx-line-height: 26px;
+  --geminifx-sidebar-font-size: 14px;
+  --geminifx-heading-size: 28px;
+  --geminifx-font-family: ui-sans-serif, -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --geminifx-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  --geminifx-transition: 120ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-geminifx="on"] {
+    --geminifx-transition: 0ms;
+  }
+}

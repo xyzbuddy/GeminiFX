@@ -1,0 +1,179 @@
+/*
+ * Gemini bridge: the CSS half of the compatibility adapter.
+ *
+ * Maps Gemini's regions (tagged by content/dom-adapter.ts) and Gemini's own
+ * color variables onto --geminifx-* tokens. This is the ONLY stylesheet that
+ * names Gemini internals (variable names, <body>). Theme files define token values only.
+ *
+ * Scope: APPROVED proposal P1-A (shell), P1-B (sidebar), P1-C (composer),
+ * P1-D (font), P1-E (messages), P1-F (light via tokens).
+ *
+ * Gemini names allowed here and nowhere else in CSS: its color variables, <body>,
+ * and the icon-font/code exclusions in the font rule. Everything else targets
+ * `data-geminifx-anchor` attributes set by content/dom-adapter.ts.
+ *
+ * Specificity: Gemini's component rules reach (0,5,0). Where we must win without
+ * !important, rules end in `:not(#gfx)`, which matches every element (no element has
+ * that id) and adds ID-level specificity. Documented in docs/ARCHITECTURE.md.
+ *
+ * Nothing here hides, moves or replaces a native control.
+ */
+
+/* ── P1-A Shell ─────────────────────────────────────────────────────────── */
+
+html[data-geminifx="on"] body {
+  background-color: var(--geminifx-bg);
+}
+
+/* Retarget Gemini's surface/text variables for everything inside the app. */
+html[data-geminifx="on"] [data-geminifx-anchor="appRoot"] {
+  --lumi-sys-color--surface: var(--geminifx-bg);
+  --bard-color-synthetic--chat-window-surface: var(--geminifx-bg);
+  --gem-sys-color--surface: var(--geminifx-bg);
+  --lumi-sys-color--on-surface: var(--geminifx-text);
+  --gem-sys-color--on-surface: var(--geminifx-text);
+  --lumi-sys-color--on-surface-variant: var(--geminifx-text-muted);
+  --gem-sys-color--on-surface-variant: var(--geminifx-text-muted);
+  --lumi-sys-color-states--hover-on-surface: var(--geminifx-surface-hover);
+  color: var(--geminifx-text);
+}
+
+/* Gemini's decorative blue glow behind the zero state. Purely visual, no children. */
+html[data-geminifx="on"] [data-geminifx-anchor="zeroStateGlow"] {
+  opacity: 0;
+}
+
+html[data-geminifx="on"] [data-geminifx-anchor="zeroStateHeading"]:not(#gfx) {
+  font-size: var(--geminifx-heading-size);
+  font-weight: 400;
+  font-variation-settings: normal;
+  line-height: 1.25;
+  color: var(--geminifx-text);
+}
+
+/* ── P1-B Sidebar (Gemini's native widths are kept on purpose) ──────────── */
+
+html[data-geminifx="on"] [data-geminifx-anchor="sidebar"]:not(#gfx) {
+  --lumi-sys-color--surface-bright: var(--geminifx-sidebar-bg);
+  --bard-color-sidenav-background-desktop: var(--geminifx-sidebar-bg);
+  --bard-color-sidenav-background-mobile: var(--geminifx-sidebar-bg);
+  background-color: var(--geminifx-sidebar-bg);
+  /* Divider without changing the box width. */
+  box-shadow: inset -1px 0 0 var(--geminifx-divider);
+}
+
+html[data-geminifx="on"] :is([data-geminifx-anchor="navItem"], [data-geminifx-anchor="navItemCurrent"]):not(#gfx) {
+  height: var(--geminifx-nav-item-height);
+  border-radius: var(--geminifx-radius-sm);
+  --mat-focus-indicator-border-radius: var(--geminifx-radius-sm);
+  color: var(--geminifx-text);
+  transition: background-color var(--geminifx-transition);
+}
+
+html[data-geminifx="on"] [data-geminifx-anchor="navItem"]:not(#gfx):hover {
+  background-color: var(--geminifx-surface-hover);
+}
+
+html[data-geminifx="on"] [data-geminifx-anchor="navItemCurrent"]:not(#gfx) {
+  background-color: var(--geminifx-surface-active);
+  opacity: 1;
+}
+
+/* Gemini renders the current page's item as Material "disabled" (label 0.3, icon 0.38
+   opacity). ChatGPT shows the current item at full strength (R2). The item stays
+   disabled and non-clickable as Gemini intends; only its dimming is removed. */
+html[data-geminifx="on"] [data-geminifx-anchor="navItemCurrentPart"]:not(#gfx) {
+  opacity: 1;
+}
+
+/* ── P1-C Composer (native input and buttons, restyled in place) ────────── */
+
+html[data-geminifx="on"] [data-geminifx-anchor="composerContainer"]:not(#gfx) {
+  max-width: var(--geminifx-content-width);
+}
+
+html[data-geminifx="on"] [data-geminifx-anchor="composer"]:not(#gfx) {
+  --gem-sys-color--surface-bright: var(--geminifx-composer-bg);
+  --single-line-border-radius: var(--geminifx-radius-full);
+  --gem-sys-color--on-surface-variant: var(--geminifx-text);
+  --mat-icon-button-icon-color: var(--geminifx-text);
+  background-color: var(--geminifx-composer-bg);
+  border: 1px solid var(--geminifx-composer-border);
+  box-shadow: var(--geminifx-composer-shadow);
+}
+
+html[data-geminifx="on"] [data-geminifx-anchor="composerField"]:not(#gfx) {
+  padding-block: var(--geminifx-composer-pad-block);
+}
+
+html[data-geminifx="on"] [data-geminifx-anchor="promptInput"]:not(#gfx)::before {
+  color: var(--geminifx-text-muted);
+}
+
+html[data-geminifx="on"] [data-geminifx-anchor="sendButton"]:not(#gfx) {
+  --mat-icon-button-icon-color: var(--geminifx-send-fg);
+  --mat-icon-color: var(--geminifx-send-fg);
+  background-color: var(--geminifx-send-bg);
+  color: var(--geminifx-send-fg);
+}
+
+/* ── P1-E Conversation (Gemini's 708px column kept; see DESIGN_DECISIONS) ─ */
+
+html[data-geminifx="on"] [data-geminifx-anchor="userBubble"]:not(#gfx) {
+  --gem-sys-color--on-surface: var(--geminifx-user-bubble-fg);
+  --lumi-sys-color--on-surface: var(--geminifx-user-bubble-fg);
+  background-color: var(--geminifx-user-bubble-bg);
+  color: var(--geminifx-user-bubble-fg);
+  border-radius: var(--geminifx-radius-bubble);
+  padding: var(--geminifx-bubble-pad-block) var(--geminifx-bubble-pad-inline);
+}
+
+html[data-geminifx="on"] [data-geminifx-anchor="inlineCode"]:not(#gfx) {
+  background-color: var(--geminifx-inline-code-bg);
+  color: var(--geminifx-text);
+  font-family: var(--geminifx-font-mono);
+}
+
+html[data-geminifx="on"] [data-geminifx-anchor="responseActions"]:not(#gfx) {
+  --mat-icon-button-icon-color: var(--geminifx-text-muted);
+  --mat-icon-color: var(--geminifx-text-muted);
+  color: var(--geminifx-text-muted);
+}
+
+/* ── P2 Type sizes (Gemini type-scale variables, re-pointed per region) ── */
+
+/* P2-A: response body. `.markdown` reads the markdown p-* variables, its panel
+   reads body-l. Headings (h-1..h-4) are not part of P2 and keep Gemini's sizes. */
+html[data-geminifx="on"] [data-geminifx-anchor="modelResponse"]:not(#gfx) {
+  --gem-sys-typography-markdown-type-scale--p-font-size: var(--geminifx-font-size);
+  --gem-sys-typography-markdown-type-scale--p-line-height: var(--geminifx-line-height);
+  --gem-sys-typography-markdown-type-scale--p-strong-font-size: var(--geminifx-font-size);
+  --gem-sys-typography-markdown-type-scale--p-strong-line-height: var(--geminifx-line-height);
+  --gem-sys-typography-type-scale--body-l-font-size: var(--geminifx-font-size);
+  --gem-sys-typography-type-scale--body-l-line-height: var(--geminifx-line-height);
+}
+
+/* P2-B: user bubble text (body-l). Line height stays at Gemini's 24px. */
+html[data-geminifx="on"] [data-geminifx-anchor="userBubble"]:not(#gfx) {
+  --gem-sys-typography-type-scale--body-l-font-size: var(--geminifx-font-size);
+}
+
+/* P2-C: sidebar labels and conversation titles use body-s (13px). */
+html[data-geminifx="on"] [data-geminifx-anchor="sidebar"]:not(#gfx) {
+  --gem-sys-typography-type-scale--body-s-font-size: var(--geminifx-sidebar-font-size);
+}
+
+/* ── P1-D Font: system stack for text; icon fonts and code untouched ────── */
+
+html[data-geminifx="on"]
+  [data-geminifx-anchor="appRoot"]
+  :not(mat-icon, .mat-ligature-font, .lumi-symbols, .google-symbols, [class*="material-symbols"], code, pre, kbd, samp, code *, pre *) {
+  font-family: var(--geminifx-font-family);
+}
+
+/* ── Accessibility ──────────────────────────────────────────────────────── */
+
+html[data-geminifx="on"] [data-geminifx-anchor="appRoot"] :focus-visible {
+  outline: 2px solid var(--geminifx-text-muted);
+  outline-offset: 2px;
+}

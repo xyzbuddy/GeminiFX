@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "GeminiFX",
+  "short_name": "GeminiFX",
+  "version": "0.1.0",
+  "description": "Unofficial, open-source visual layer for Google Gemini. Change the UI, not the AI. Not affiliated with Google or OpenAI.",
+  "minimum_chrome_version": "114",
+  "permissions": ["storage"],
+  "host_permissions": ["https://gemini.google.com/*"],
+  "background": {
+    "service_worker": "service-worker.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://gemini.google.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "action": {
+    "default_title": "GeminiFX",
+    "default_popup": "popup/index.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  }
+}
