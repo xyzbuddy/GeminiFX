@@ -41,7 +41,19 @@ Now that offer has ended. Gemini offers a similar student plan, so switching mak
 
 ## Install
 
-GeminiFX isn't on the Chrome Web Store yet. Build it and load it yourself:
+GeminiFX isn't on the Chrome Web Store yet. There are two ways to install it.
+
+### Option 1: download a release (no coding needed)
+
+1. Go to [**Releases**](https://github.com/xyzbuddy/GeminiFX/releases/latest) and download `GeminiFX-v0.1.0.zip`.
+2. Extract the zip to a folder you'll keep (Chrome loads the extension from it).
+3. Open `chrome://extensions` and turn on **Developer mode** (top right).
+4. Click **Load unpacked** and choose the extracted folder (the one containing `manifest.json`).
+5. Open or refresh [gemini.google.com](https://gemini.google.com).
+
+To update: download the new zip, replace the folder's contents, then click ⟳ on the GeminiFX card.
+
+### Option 2: build from source
 
 ```bash
 git clone https://github.com/xyzbuddy/GeminiFX.git
@@ -50,9 +62,7 @@ npm install
 npm run build
 ```
 
-1. Open `chrome://extensions` and turn on **Developer mode**.
-2. Click **Load unpacked** and choose the **`dist`** folder.
-3. Open or refresh [gemini.google.com](https://gemini.google.com).
+Then load the **`dist`** folder with **Load unpacked** (same steps as above).
 
 To update later: `git pull`, `npm run build`, then click ⟳ on the GeminiFX card and refresh Gemini.
 
@@ -68,7 +78,7 @@ Requires Node 20.11+ and Chrome 114+ (or another Chromium browser).
 
 ---
 
-## Project status: v0.1.0, early
+## Project status: v0.1.0, first release
 
 | Part | State |
 |---|---|

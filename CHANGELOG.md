@@ -1,6 +1,8 @@
 # Changelog
 
-## [Unreleased]
+## [0.1.0] - 2026-11-13
+
+First public release. Download `GeminiFX-v0.1.0.zip` from the GitHub release, extract it, and load the folder with **Load unpacked**.
 
 ### Added
 - **ChatGPT-style theme (approved proposal P1):** black shell with the blue glow removed, black sidebar with a faint divider, 36 px nav items with `#1a1a1a` hover/current state, 768 × 52 px pill composer, white Send button, 28 px system-font heading, and the system font stack throughout (icons and code excluded).
@@ -25,6 +27,7 @@
 - The `sidebar` anchor is optional: Gemini removes it on narrow screens and briefly after load.
 
 ### Fixed
+- Long (collapsed) prompts no longer show a black fade strip inside the green user bubble; Gemini's expand fade now blends into the bubble color.
 - Adapter no longer mis-tags the main content as `sidebar` before Gemini renders `<bard-sidenav>` (about 1 s after load). Each element now gets only one anchor, and stale tags are removed.
 
 ### Not yet done

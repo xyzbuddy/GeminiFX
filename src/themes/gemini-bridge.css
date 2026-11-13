@@ -122,6 +122,11 @@ html[data-geminifx="on"] [data-geminifx-anchor="sendButton"]:not(#gfx) {
 html[data-geminifx="on"] [data-geminifx-anchor="userBubble"]:not(#gfx) {
   --gem-sys-color--on-surface: var(--geminifx-user-bubble-fg);
   --lumi-sys-color--on-surface: var(--geminifx-user-bubble-fg);
+  /* Long prompts collapse with a fade (.luminous-expand-fade) that blends into the
+     bubble's own color: surface-dim (default) or accent-container (bubble-shell layout).
+     Without these, the fade shows as a black strip on the green bubble. */
+  --lumi-sys-color--surface-dim: var(--geminifx-user-bubble-bg);
+  --lumi-sys-color-acc-color--accent-container: var(--geminifx-user-bubble-bg);
   background-color: var(--geminifx-user-bubble-bg);
   color: var(--geminifx-user-bubble-fg);
   border-radius: var(--geminifx-radius-bubble);
